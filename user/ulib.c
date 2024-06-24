@@ -14,13 +14,12 @@ _main()
   main();
   exit(0);
 }
-int
+char*
 hello(void)
 {
   char *str;
-  asm volatile("li a7, %0" : : "i" (SYS_hello));
-  asm volatile("ecall");
-  asm volatile("mv %0, a0" : "=r" (str));
+  // 调用系统调用
+  str = (char*) syscall(SYS_hello);
   return str;
 }
 
