@@ -2,6 +2,7 @@
 #include "kernel/stat.h"
 #include "kernel/fcntl.h"
 #include "user/user.h"
+#include "kernel/syscall.h"
 
 //
 // wrapper so that it's OK if main() does not call exit().
@@ -12,6 +13,15 @@ _main()
   extern int main();
   main();
   exit(0);
+}
+int
+hello(void)
+{
+  char *str;
+  asm volatile("li a7, %0" : : "i" (SYS_hello));
+  asm volatile("ecall");
+  asm volatile("mv %0, a0" : "=r" (str));
+  return str;
 }
 
 char*

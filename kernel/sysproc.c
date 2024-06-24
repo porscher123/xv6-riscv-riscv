@@ -6,6 +6,14 @@
 #include "spinlock.h"
 #include "proc.h"
 
+// 我的系统调用
+uint64
+sys_hello(void)
+{
+  char *str = "Hello, xv6!";
+  return (uint64)str;
+}
+
 uint64
 sys_exit(void)
 {
@@ -89,3 +97,4 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
