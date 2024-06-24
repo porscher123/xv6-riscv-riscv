@@ -22,7 +22,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int hello(void); // 我的系统调用
+char* hello(void); // 我的系统调用
 
 
 // ulib.c
